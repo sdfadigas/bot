@@ -30,13 +30,12 @@ public class QuoteMotivaBot extends TelegramLongPollingBot {
                 BV.printStackTrace();
             }
 
-        } else if (command.equals("/frase")) {
-            //aqui vai nosso código com o loop
+      } else if (command.equals("/frase")) {
 
+            //aqui vai nosso código com o loop
             File dir = new File("C:\\Users\\samara");
             //Cria um novo arquivo
             File arq = new File(dir, "frases.txt");
-
 
             try {
                 FileReader fileReader = new FileReader(arq);
@@ -48,37 +47,34 @@ public class QuoteMotivaBot extends TelegramLongPollingBot {
                 List<String> result = new ArrayList();
 
                 while ((linha = bufferedReader.readLine()) != null) {
+
                     if (linha != null && !linha.isEmpty()) {
                         result.add(linha);
                     }
+
                 }
                 fileReader.close();
                 bufferedReader.close();
 
+
                 Random rand = new Random();
                 int num = rand.nextInt(result.size());
                 String frase = result.get(num);
-
-
-                System.out.println(frase);
                 SendMessage responseR = new SendMessage();
-                responseR.setChatId(update.getMessage().getChatId().toString());
-
+                responseR.setChatId(update.getMessage().getChatId());
+                responseR.setText(frase);
+             
+                try {
+                    execute(responseR);
+                } catch (TelegramApiException BV) {
+                    BV.printStackTrace();
+                }
 
             } catch (IOException e) {
                 e.printStackTrace();
-
             }
 
 
-
-
-
-            try {
-                execute(responseR);
-            } catch (TelegramApiException msg) {
-                msg.printStackTrace();
-            }
         }
 
     }
