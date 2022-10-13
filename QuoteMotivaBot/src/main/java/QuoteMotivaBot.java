@@ -14,9 +14,6 @@ public class QuoteMotivaBot extends TelegramLongPollingBot {
     @Override
     public void onUpdateReceived(Update update) {
 
-        //System.out.println(update.getMessage().getText()); esse método é pra mostrar no IDE o que o usuário escreveu
-        //System.out.println(update.getMessage().getFrom().getFirstName()); esse método é pra mostrar no IDE o nome do usuário q escreveu
-
         String command = update.getMessage().getText();
         if (command.equals("/boasvindas")) {
             String message = "Seja bem vindo(a) ao nosso bot de mensagens motivacionais! Digite o comando /frase para receber uma mensagem aleatória";
@@ -29,7 +26,29 @@ public class QuoteMotivaBot extends TelegramLongPollingBot {
             } catch (TelegramApiException BV) {
                 BV.printStackTrace();
             }
+            
+        } else if (command.equals("/sobre")) {
+          
+            //colocar código
+            
+            
+        }
 
+          } else if (command.equals("/figuras")) {
+          
+            //colocar código
+            
+            
+        }
+        
+    
+      } else if (command.equals("/antifrase")) {
+          
+            //colocar código
+            
+            
+        }
+        
       } else if (command.equals("/frase")) {
 
             //aqui vai nosso código com o loop
