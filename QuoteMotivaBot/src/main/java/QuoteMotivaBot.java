@@ -1,12 +1,13 @@
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
+import org.telegram.telegrambots.meta.api.methods.send.SendPhoto;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.objects.Update;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 import java.io.*;
-
 
 
 public class QuoteMotivaBot extends TelegramLongPollingBot {
@@ -15,8 +16,9 @@ public class QuoteMotivaBot extends TelegramLongPollingBot {
     public void onUpdateReceived(Update update) {
 
         String command = update.getMessage().getText();
-        if (command.equals("/boasvindas")) {
-            String message = "Seja bem vindo(a) ao nosso bot de mensagens motivacionais! Digite o comando /frase para receber uma mensagem aleatória";
+        //comando que exibe a mensagem de boas vindas
+        if (command.equals("/start")) {
+            String message = "Seja bem vindo(a) ao nosso bot! Digite /frase para receber uma frase motivacional aleatória, /antifrase para receber uma frase desmotivacional aleatória /imagem para receber uma imagem motivacional ou /sobre para acessar a documentação do bot. Ou se preferir, pesquise no menu no canto inferior esquerdo para as opções de comando";
             SendMessage response = new SendMessage();
             response.setChatId(update.getMessage().getChatId().toString());
             response.setText(message);
@@ -26,34 +28,40 @@ public class QuoteMotivaBot extends TelegramLongPollingBot {
             } catch (TelegramApiException BV) {
                 BV.printStackTrace();
             }
-            
-        } else if (command.equals("/sobre")) {
-          
-            //colocar código
-            
-            
-        }
 
-          } else if (command.equals("/figuras")) {
-          
-            //colocar código
-            
-            
-        }
-        
-    
-      } else if (command.equals("/antifrase")) {
-          
-            //colocar código
-            
-            
-        }
-        
-      } else if (command.equals("/frase")) {
+            //comando que acessa o link pra documentação
+        } else if (command.equals("/sobre")) {
+            SendMessage responseS = new SendMessage();
+            responseS.enableMarkdown(true);
+            responseS.setChatId(update.getMessage().getChatId().toString());
+            responseS.setText("Quer entender o processo de desenvolvimento do bot? [clique aqui](https://www.notion.so/Projeto-Chatbot-00f5e88fe2ee464f83f277adf0cb58e0/)");
+
+            try {
+                execute(responseS);
+            } catch (TelegramApiException BV) {
+                BV.printStackTrace();
+            }
+
+            //comando para exibir uma imagem aleatória
+        } else if (command.equals("/imagem")) {
+            File dir = new File("C:\\Users\\samara\\IdeaProjects\\QuoteMotivaBot\\img");
+           // File arq = new File(dir, "frases.txt");
+
+            SendMessage responseI = new SendMessage();
+
+
+            try {
+                execute(responseI);
+            } catch (TelegramApiException BV) {
+                BV.printStackTrace();
+
+            }
+
+            //comando que gera a frase motivacional aleatória
+        } else if (command.equals("/frase")) {
 
             //aqui vai nosso código com o loop
-            File dir = new File("C:\\Users\\samara");
-            //Cria um novo arquivo
+            File dir = new File("C:\\Users\\samara\\IdeaProjects\\QuoteMotivaBot");
             File arq = new File(dir, "frases.txt");
 
             try {
@@ -79,12 +87,12 @@ public class QuoteMotivaBot extends TelegramLongPollingBot {
                 Random rand = new Random();
                 int num = rand.nextInt(result.size());
                 String frase = result.get(num);
-                SendMessage responseR = new SendMessage();
-                responseR.setChatId(update.getMessage().getChatId());
-                responseR.setText(frase);
-             
+                SendMessage responseF = new SendMessage();
+                responseF.setChatId(update.getMessage().getChatId());
+                responseF.setText(frase);
+
                 try {
-                    execute(responseR);
+                    execute(responseF);
                 } catch (TelegramApiException BV) {
                     BV.printStackTrace();
                 }
@@ -94,9 +102,53 @@ public class QuoteMotivaBot extends TelegramLongPollingBot {
             }
 
 
-        }
+        //comando que gera a frase desmotivacional aleatória
+    } else if (command.equals("/antifrase")) {
 
-    }
+            //aqui vai nosso código com o loop
+            File dir = new File("C:\\Users\\samara\\IdeaProjects\\QuoteMotivaBot");
+            File arq = new File(dir, "antifrases.txt");
+
+            try {
+                FileReader fileReader = new FileReader(arq);
+                BufferedReader bufferedReader = new BufferedReader(fileReader);
+                String linha = "";
+
+                //Lista que irá guardar o resultado, ou seja,
+                // cada linha do arquivo que corresponde a um User
+                List<String> result = new ArrayList();
+
+                while ((linha = bufferedReader.readLine()) != null) {
+
+                    if (linha != null && !linha.isEmpty()) {
+                        result.add(linha);
+                    }
+
+                }
+                fileReader.close();
+                bufferedReader.close();
+
+
+                Random rand = new Random();
+                int num = rand.nextInt(result.size());
+                String frase = result.get(num);
+                SendMessage responseF = new SendMessage();
+                responseF.setChatId(update.getMessage().getChatId());
+                responseF.setText(frase);
+
+                try {
+                    execute(responseF);
+                } catch (TelegramApiException BV) {
+                    BV.printStackTrace();
+                }
+
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+
+        }}
+
 
     @Override
     public String getBotUsername() {
