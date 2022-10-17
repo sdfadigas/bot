@@ -5,7 +5,7 @@
   - [How it works](#how-it-works)
   - [Screenshot](#screenshot)
   - [Links](#links)
-- [Our process](#my-process)
+- [Our process](#our-process)
   - [Built with](#built-with)
 - [Authors](#authors)
 
