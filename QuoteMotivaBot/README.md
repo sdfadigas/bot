@@ -69,7 +69,7 @@ A escolha do desenvolvimento de um Bot como projeto final da disciplina Desenvol
 Usuários devem conseguir:
 
 - Usar os seguintes comandos para realizar as respectivas ações:
-  - /boasvindas: Exibe a mensagem de boas vindas ao usuário e apresenta a opção /frase;
+  - /boasvindas: Exibe a mensagem de boas vindas ao usuário e apresenta os comandos disponíveis;
   - /frase: Exibe uma frase motivacional aleatória;
   - /antifrase: Exibe uma frase desmotivacional aleatória;
   - /sobre: Comando que exibe o link da documentação;
