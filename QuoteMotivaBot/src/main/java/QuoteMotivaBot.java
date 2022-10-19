@@ -1,12 +1,15 @@
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
 import org.telegram.telegrambots.meta.api.methods.send.SendPhoto;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
+import org.telegram.telegrambots.meta.api.objects.InputFile;
 import org.telegram.telegrambots.meta.api.objects.Update;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
-
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+import java.io.File;
 import java.io.*;
 
 
@@ -44,20 +47,20 @@ public class QuoteMotivaBot extends TelegramLongPollingBot {
 
             //comando para exibir uma imagem aleatória
         } else if (command.equals("/imagem")) {
-            File dir = new File("C:\\Users\\samara\\IdeaProjects\\QuoteMotivaBot\\img");
-           // File arq = new File(dir, "frases.txt");
-
-            SendMessage responseI = new SendMessage();
-
-
+          //aqui eu to querendo fazer o código que envia imagens aleatórias de um pasta no local host. mas eu nao to conseguindo nem mandar uma foto específica
+            // o prof disse q era a mesma lógica do código q manda frase aleatória (linha 64)
             try {
-                execute(responseI);
-            } catch (TelegramApiException BV) {
-                BV.printStackTrace();
+                SendPhoto sendPhoto = new SendPhoto();
+                sendPhoto.setChatId(update.getMessage().getChatId());
+                sendPhoto.setPhoto(new InputFile("C:\\Users\\samara\\IdeaProjects\\QuoteMotivaBot\\img\\1.png\\"));
+                execute(sendPhoto);
 
-            }
+                } catch (TelegramApiException BV) {
+                    BV.printStackTrace();
+                }
 
-            //comando que gera a frase motivacional aleatória
+
+                //comando que gera a frase motivacional aleatória
         } else if (command.equals("/frase")) {
 
             //aqui vai nosso código com o loop
