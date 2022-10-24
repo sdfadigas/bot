@@ -4,13 +4,12 @@ import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.objects.InputFile;
 import org.telegram.telegrambots.meta.api.objects.Update;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
+import java.util.*;
 import java.io.File;
 import java.io.*;
+import java.util.List;
+
+
 
 
 public class QuoteMotivaBot extends TelegramLongPollingBot {
@@ -45,112 +44,120 @@ public class QuoteMotivaBot extends TelegramLongPollingBot {
                 BV.printStackTrace();
             }
 
-            //comando para exibir uma imagem aleatória
-        } else if (command.equals("/imagem")) {
-          //aqui eu to querendo fazer o código que envia imagens aleatórias de um pasta no local host. mas eu nao to conseguindo nem mandar uma foto específica
-            // o prof disse q era a mesma lógica do código q manda frase aleatória (linha 64)
-            try {
-                SendPhoto sendPhoto = new SendPhoto();
-                sendPhoto.setChatId(update.getMessage().getChatId());
-                sendPhoto.setPhoto(new InputFile("C:\\Users\\samara\\IdeaProjects\\QuoteMotivaBot\\img\\1.png\\"));
-                execute(sendPhoto);
+            //comando para exibir uma imagem desmotivacional aleatória
 
-                } catch (TelegramApiException BV) {
-                    BV.printStackTrace();
-                }
+        } else if (command.equals("/imagem")) {
+            File folder = new File("C:\\Users\\samara\\IdeaProjects\\QuoteMotivaBot\\img\\");
+            File[] listOfImages = folder.listFiles();
+            List<File> allImages = new ArrayList<>(List.of(listOfImages)); //cria uma lista com todos os arquivos
+            Random rand = new Random();
+            int number = rand.nextInt(allImages.size());
+
+
+
+            try {
+                SendPhoto pics = new SendPhoto();
+                pics.setChatId(update.getMessage().getChatId());
+                pics.setPhoto(new InputFile(allImages.get(number)));
+                execute(pics);
+
+            } catch (TelegramApiException e) {
+                e.printStackTrace();
 
 
                 //comando que gera a frase motivacional aleatória
-        } else if (command.equals("/frase")) {
+            }}
+        else if (command.equals("/frase")) {
 
-            //aqui vai nosso código com o loop
-            File dir = new File("C:\\Users\\samara\\IdeaProjects\\QuoteMotivaBot");
-            File arq = new File(dir, "frases.txt");
-
-            try {
-                FileReader fileReader = new FileReader(arq);
-                BufferedReader bufferedReader = new BufferedReader(fileReader);
-                String linha = "";
-
-                //Lista que irá guardar o resultado, ou seja,
-                // cada linha do arquivo que corresponde a um User
-                List<String> result = new ArrayList();
-
-                while ((linha = bufferedReader.readLine()) != null) {
-
-                    if (linha != null && !linha.isEmpty()) {
-                        result.add(linha);
-                    }
-
-                }
-                fileReader.close();
-                bufferedReader.close();
-
-
-                Random rand = new Random();
-                int num = rand.nextInt(result.size());
-                String frase = result.get(num);
-                SendMessage responseF = new SendMessage();
-                responseF.setChatId(update.getMessage().getChatId());
-                responseF.setText(frase);
+                //aqui vai nosso código com o loop
+                File dir = new File("C:\\Users\\samara\\IdeaProjects\\QuoteMotivaBot");
+                File arq = new File(dir, "frases.txt");
 
                 try {
-                    execute(responseF);
-                } catch (TelegramApiException BV) {
-                    BV.printStackTrace();
-                }
+                    FileReader fileReader = new FileReader(arq); //lê o arquivo .txt
+                    BufferedReader bufferedReader = new BufferedReader(fileReader);
+                    String linha = "";
 
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+                    //Lista que irá guardar o resultado, ou seja,
+                    // cada linha do arquivo que corresponde a um User
+                    List<String> result = new ArrayList();
+
+                    while ((linha = bufferedReader.readLine()) != null) {
+
+                        if (linha != null && !linha.isEmpty()) {
+                            result.add(linha);
+                        }
+
+                    }
+                    fileReader.close();
+                    bufferedReader.close();
 
 
-        //comando que gera a frase desmotivacional aleatória
-    } else if (command.equals("/antifrase")) {
+                    Random rand = new Random();
+                    int num = rand.nextInt(result.size());
+                    String frase = result.get(num);
+                    SendMessage responseF = new SendMessage();
+                    responseF.setChatId(update.getMessage().getChatId());
+                    responseF.setText(frase);
 
-            //aqui vai nosso código com o loop
-            File dir = new File("C:\\Users\\samara\\IdeaProjects\\QuoteMotivaBot");
-            File arq = new File(dir, "antifrases.txt");
-
-            try {
-                FileReader fileReader = new FileReader(arq);
-                BufferedReader bufferedReader = new BufferedReader(fileReader);
-                String linha = "";
-
-                //Lista que irá guardar o resultado, ou seja,
-                // cada linha do arquivo que corresponde a um User
-                List<String> result = new ArrayList();
-
-                while ((linha = bufferedReader.readLine()) != null) {
-
-                    if (linha != null && !linha.isEmpty()) {
-                        result.add(linha);
+                    try {
+                        execute(responseF);
+                    } catch (TelegramApiException BV) {
+                        BV.printStackTrace();
                     }
 
+                } catch (IOException e) {
+                    e.printStackTrace();
                 }
-                fileReader.close();
-                bufferedReader.close();
 
 
-                Random rand = new Random();
-                int num = rand.nextInt(result.size());
-                String frase = result.get(num);
-                SendMessage responseF = new SendMessage();
-                responseF.setChatId(update.getMessage().getChatId());
-                responseF.setText(frase);
+                //comando que gera a frase desmotivacional aleatória
+            } else if (command.equals("/antifrase")) {
+
+                //aqui vai nosso código com o loop
+                File dir = new File("C:\\Users\\samara\\IdeaProjects\\QuoteMotivaBot");
+                File arq = new File(dir, "antifrases.txt");
 
                 try {
-                    execute(responseF);
-                } catch (TelegramApiException BV) {
-                    BV.printStackTrace();
+                    FileReader fileReader = new FileReader(arq);
+                    BufferedReader bufferedReader = new BufferedReader(fileReader);
+                    String linha = "";
+
+                    //Lista que irá guardar o resultado, ou seja,
+                    // cada linha do arquivo que corresponde a um User
+                    List<String> result = new ArrayList();
+
+                    while ((linha = bufferedReader.readLine()) != null) {
+
+                        if (linha != null && !linha.isEmpty()) {
+                            result.add(linha);
+                        }
+
+                    }
+                    fileReader.close();
+                    bufferedReader.close();
+
+
+                    Random rand = new Random();
+                    int num = rand.nextInt(result.size());
+                    String frase = result.get(num);
+                    SendMessage responseF = new SendMessage();
+                    responseF.setChatId(update.getMessage().getChatId());
+                    responseF.setText(frase);
+
+                    try {
+                        execute(responseF);
+                    } catch (TelegramApiException BV) {
+                        BV.printStackTrace();
+                    }
+
+                } catch (IOException e) {
+                    e.printStackTrace();
                 }
 
-            } catch (IOException e) {
-                e.printStackTrace();
             }
 
-
-        }}
+}
 
 
     @Override
