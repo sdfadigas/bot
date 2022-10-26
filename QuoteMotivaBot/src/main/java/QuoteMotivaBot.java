@@ -16,8 +16,8 @@ public class QuoteMotivaBot extends TelegramLongPollingBot {
     //nesse método que vamos incluir os comandos do bot
     @Override
     public void onUpdateReceived(Update update) {
-
-        String command = update.getMessage().getText();
+    String command = update.getMessage().getText();
+     
         //comando que exibe a mensagem de boas vindas
         if (command.equals("/start")) {
             String message = "Seja bem vindo(a) ao nosso bot! Digite /frase para receber uma frase motivacional aleatória, /antifrase para receber uma frase desmotivacional aleatória /imagem para receber uma imagem motivacional ou /sobre para acessar a documentação do bot. Ou se preferir, pesquise no menu no canto inferior esquerdo para as opções de comando";
@@ -53,8 +53,6 @@ public class QuoteMotivaBot extends TelegramLongPollingBot {
             Random rand = new Random();
             int number = rand.nextInt(allImages.size());
 
-
-
             try {
                 SendPhoto pics = new SendPhoto();
                 pics.setChatId(update.getMessage().getChatId());
@@ -63,13 +61,10 @@ public class QuoteMotivaBot extends TelegramLongPollingBot {
 
             } catch (TelegramApiException e) {
                 e.printStackTrace();
-
+            }}
 
                 //comando que gera a frase motivacional aleatória
-            }}
         else if (command.equals("/frase")) {
-
-                //aqui vai nosso código com o loop
                 File dir = new File("C:\\Users\\samara\\IdeaProjects\\QuoteMotivaBot");
                 File arq = new File(dir, "frases.txt");
 
@@ -169,6 +164,6 @@ public class QuoteMotivaBot extends TelegramLongPollingBot {
     @Override
     public String getBotToken() {
         // TODO
-        return "5786160892:AAF67HqeRGTJzkSUuEuuGpFuJCmvNu7e_tc";
+        return <"token to access the HTTP API">;
     }
 }
