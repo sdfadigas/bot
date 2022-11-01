@@ -164,6 +164,6 @@ public class QuoteMotivaBot extends TelegramLongPollingBot {
     @Override
     public String getBotToken() {
         // TODO
-        return <"token to access the HTTP API">;
+        return "5786160892:AAF67HqeRGTJzkSUuEuuGpFuJCmvNu7e_tc";
     }
 }
