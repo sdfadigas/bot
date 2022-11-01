@@ -47,7 +47,7 @@ public class QuoteMotivaBot extends TelegramLongPollingBot {
             //comando para exibir uma imagem desmotivacional aleatória
 
         } else if (command.equals("/imagem")) {
-            File folder = new File("C:\\Users\\samara\\IdeaProjects\\QuoteMotivaBot\\img\\");
+            File folder = new File("<caminho pra pasta onde estão as imagens>");
             File[] listOfImages = folder.listFiles();
             List<File> allImages = new ArrayList<>(List.of(listOfImages)); //cria uma lista com todos os arquivos
             Random rand = new Random();
@@ -65,7 +65,7 @@ public class QuoteMotivaBot extends TelegramLongPollingBot {
 
                 //comando que gera a frase motivacional aleatória
         else if (command.equals("/frase")) {
-                File dir = new File("C:\\Users\\samara\\IdeaProjects\\QuoteMotivaBot");
+                File dir = new File("<caminho pra pasta onde está o arquivo .txt das frases>");
                 File arq = new File(dir, "frases.txt");
 
                 try {
@@ -110,7 +110,7 @@ public class QuoteMotivaBot extends TelegramLongPollingBot {
             } else if (command.equals("/antifrase")) {
 
                 //aqui vai nosso código com o loop
-                File dir = new File("C:\\Users\\samara\\IdeaProjects\\QuoteMotivaBot");
+                File dir = new File("<caminho pra pasta onde está o arquivo .txt das frases>");
                 File arq = new File(dir, "antifrases.txt");
 
                 try {
