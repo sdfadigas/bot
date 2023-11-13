@@ -9,8 +9,6 @@
   - [Built with](#built-with)
 - [Authors](#authors)
 
-
-
 ## Overview
 The choice of developing a Bot as the final project of the Systems Development I discipline was motivated, mainly, by the possibility of learning about API and how to work the logic through this communication between applications, and was also motivated by the possibility of creating an application with easy access and which can be accessed by anyone with a Telegram account, as well as providing an easy-to-understand interface. The work bot's main command is to return a motivational message whenever it is called.
 
@@ -27,13 +25,15 @@ Users should be able to:
   
 ### Screenshot
 
-![]()
+![Chatbot](https://user-images.githubusercontent.com/99447521/198105964-033696dc-e3cf-43a0-9bc4-818f9cb06c86.png)
 
 ### Links
 
 - [Main code](https://github.com/sdfadigas/bot/blob/main/QuoteMotivaBot/src/main/java/QuoteMotivaBot.java)
 
 ## Our process
+
+- [Documentation](https://www.notion.so/Projeto-Chatbot-00f5e88fe2ee464f83f277adf0cb58e0)
 
 ### Built with
 
@@ -44,9 +44,9 @@ Users should be able to:
 ## Authors
 
 - [Samara Dumont Fadigas](https://samara.dev.br)
-- []()
-- []()
-- []()
+- [Igor Pereira](https://github.com/Igorpereirag)
+- [Vitor Tanan]()
+- [Victor Thiago]()
 
 # QuoteMotivaBot (Português)
 ## Índice
@@ -77,13 +77,15 @@ Usuários devem conseguir:
   
 ### Screenshot
 
-![]()
+![Chatbot](https://user-images.githubusercontent.com/99447521/198105964-033696dc-e3cf-43a0-9bc4-818f9cb06c86.png)
 
 ### Links
 
 - [Códgo principal](https://github.com/sdfadigas/bot/blob/main/QuoteMotivaBot/src/main/java/QuoteMotivaBot.java)
 
 ## Nosso processo
+
+- [Documentação](https://www.notion.so/Projeto-Chatbot-00f5e88fe2ee464f83f277adf0cb58e0)
 
 ### Desenvolvido com
 
@@ -94,9 +96,9 @@ Usuários devem conseguir:
 ## Autores
 
 - [Samara Dumont Fadigas](https://samara.dev.br)
-- []()
-- []()
-- []()
+- [Igor Pereira](https://github.com/Igorpereirag)
+- [Vitor Tanan]()
+- [Victor Thiago]()
 
 
 
